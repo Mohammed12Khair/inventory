@@ -1,0 +1,155 @@
+{%  include 'nav.html'  %}
+
+
+<div class="container">
+<h1>Request Page</h1>
+
+{%  if info == 1 %}
+		<div class="alert alert-info" role="alert">
+			Report Generated Please Clieck <a href="{% url 'report_page' %}">Here</a> Check Reports 
+		</div>
+{% endif %}
+<strong>Search</strong>
+
+<form action="." method="post">{% csrf_token %}
+
+
+<label for="ID">Request ID<input value="{{ id }}" class="form-control" type="number" name="id" id="ID"></label>
+
+<label for="item">User Request
+<select class="form-control selcls" name="user_req" id="cars">
+	<option value="{{user_req_data }}">{{user_req_data }}</option>
+	{% for i in user_req %}
+	  <option value="{{ i.user_request }}">{{ i.user_request }}</option>
+  	 {%  endfor %}
+</select>
+</label>
+
+
+<br>
+
+<label for="item">Item Name
+<select class="form-control selcls" name="import_item" id="cars">
+	<option value="{{import_item_n}}">{{import_item_n}}</option>
+	{% for i in items %}
+	  <option value="{{ i.item }}">{{ i.item }}</option>
+  	 {%  endfor %}
+</select>
+</label>
+
+<label for="item">Department
+<select class="form-control selcls" name="items_dep" id="cars">
+	<option value="{{ items_dep_val }}">{{ items_dep_val }}</option>
+	{% for i in items_dep %}
+	  <option value="{{ i.dep_name }}">{{ i.dep_name }}</option>
+  	 {%  endfor %}
+</select>
+</label>
+
+<label for="item">Action Status
+<select class="form-control selcls" name="Action_name" id="cars">
+	<option value="{{Action_name_val}}">{{Action_name_val}}</option>
+	{% for i in items_Action %}
+	  <option value="{{ i.action_status }}">{{ i.action_status }}</option>
+  	 {%  endfor %}
+</select>
+</label>
+
+
+
+
+
+
+
+
+<br>
+<label for="sd">Start Date<input required="true" value="{{ sd }}" class="form-control" type="date" name="start" id="sd"></label>
+<label for="ed">End Date<input required="true" value="{{ ed }}" class="form-control" type="date" name="end" id="ed"></label>
+
+<br>
+<button name="action" value="filter" type="submit" class="btn btn-info">Filter</button>
+<button name="action" value="Export" type="submit" class="btn btn-info">Export</button>
+</form>
+
+
+<table class="table table-sm"
+style="text-align: center;">
+	<tr>
+<th>ID</th>
+<th>Request</th>
+<th>Handler</th>
+<th>Department</th>
+<th>Date</th>
+<th>Sys date</th>
+<th>Comment</th>
+<th>Item</th>
+<th>Stock</th>
+<th >User</th>
+<th >Action</th>
+</tr>
+
+{% for i in requests %}
+<tr>
+
+<td>{{ i.action_id }}</td>
+<td>{{ i.user_request }}</td>
+<td>{{ i.user_handler }}</td>
+<td>{{ i.department }}</td>
+<td>{{ i.date_input }}</td>
+<td>{{ i.date_sys }}</td>
+<td>{{ i.info_7 }}</td>
+<td>{{ i.item_name }}</td>
+<td>{{ i.item_count }}</td>
+<td class="admin" >{{ i.admin_name }}</td>
+<td class="admin" >{{ i.action_status }}</td>
+
+</tr>
+{%  endfor %}
+
+</table>
+
+
+ <div class="pagination">
+    <span class="step-links">
+        {% if requests.has_previous %}
+            <a href="?page=1">&laquo; first</a>
+            <a href="?page={{ requests.previous_page_number }}">previous</a>
+        {% endif %}
+
+        <span class="current">
+            Page {{ requests.number }} of {{ requests.paginator.num_pages }}.
+        </span>
+
+        {% if requests.has_next %}
+            <a href="?page={{ requests.next_page_number }}">next</a>
+            <a href="?page={{ requests.paginator.num_pages }}">last &raquo;</a>
+        {% endif %}
+    </span>
+</div>
+
+
+</div>
+
+<!--
+<label for="item">Item Name
+<select class="form-control selcls" name="import_item" id="cars">
+	<option value="">Select</option>
+	{% for i in items %}
+	  <option value="{{ i.item }}">{{ i.item }}</option>
+  	 {%  endfor %}
+</select>
+</label>
+
+<label for="action">Item Name
+<select class="form-control selcls" name="items_action" id="cars">
+	<option value="">Select</option>
+	{% for i in items_action %}
+	  <option value="{{ i.action_status }}">{{ i.action_status }}</option>
+  	 {%  endfor %}
+</select>
+</label>
+
+
+<br>
+-->
+

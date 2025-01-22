@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>STACK</title>
+    <link rel="stylesheet" href="/assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/assets/css/Google-Style-Login.css">
+    <link rel="stylesheet" href="/assets/css/Navigation-Clean.css">
+    <link rel="stylesheet" href="/assets/css/styles.css">
+</head>
+<style>
+    table{
+        font-size: 10px;
+    }
+
+    .admin{
+
+        color: #FFFFFFFF;
+        background-color:#00203FFF ;
+        text-align: center;
+    }
+
+    table{
+        text-transform: capitalize;
+    }
+
+    .custom:hover{
+         transition: 1.0s;
+         background-color: #bfccda;
+         border-radius: 9px;
+    }
+</style>
+<body>
+    <nav class="navbar navbar-light navbar-expand-md navigation-clean">
+        <div class="container shadow-sm p-3 mb-5 bg-white rounded"><a class="navbar-brand" href="#">{{request.user}} | {{ role_control }}</a><button data-toggle="collapse" class="navbar-toggler" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
+            <div class="collapse navbar-collapse"
+                id="navcol-1">
+                <ul class="nav navbar-nav ml-auto">
+
+                    <li class="nav-item custom" role="presentation"><a class="nav-link" href="{% url 'logout_page' %}">Logout</a></li>
+
+                    <!-- admin -->
+                    {%  if role_control == "admin" %} 
+                    <li class="nav-item custom" role="presentation"><a class="nav-link" href="{% url 'import_page' %}">Import</a></li>
+                    <li class="nav-item custom" role="presentation"><a class="nav-link" href="{% url 'export_page' %}">Export</a></li>
+                    <li class="nav-item custom" role="presentation"><a class="nav-link" href="{% url 'request_page' %}">Request</a></li>
+                    <li class="nav-item custom" role="presentation"><a class="nav-link" href="{% url 'report_page' %}">Report</a></li>
+                    <li class="nav-item custom" role="presentation"><a class="nav-link" href="{% url 'request_page_user' %}">Request user</a></li>
+                    <li class="nav-item dropdown"><a class="dropdown-toggle nav-link" data-toggle="dropdown" aria-expanded="false" href="#">Action</a>
+                        <div class="dropdown-menu" role="menu">
+                            <a class="dropdown-item" role="presentation" href="{% url 'import_req' %}">Import Request</a>
+                            <a class="dropdown-item" role="presentation" href="{% url 'stock_req' %}">Stock</a>
+                            <a class="dropdown-item" role="presentation" href="{% url 'export_req'%}">First Approval</a>
+                            <a class="dropdown-item" role="presentation" href="{% url 'export_req_2'%}">Second Approval</a>
+                        </div>
+                    </li>
+                    {% endif %}
+
+                    <!-- client -->
+                    {%  if role_control == "client" %} 
+                    <li class="nav-item custom" role="presentation"><a class="nav-link" href="{% url 'request_page_user' %}">Request user</a></li>
+                    <li class="nav-item custom" role="presentation"><a class="nav-link" href="{% url 'report_page' %}">Report</a></li>
+                    <li class="nav-item custom" role="presentation"><a class="nav-link" href="{% url 'export_page' %}">Export</a></li>
+                    {% endif %}
+
+
+                    <!-- warehouse -->
+                    {%  if role_control == "warehouse" %} 
+                    <li class="nav-item custom" role="presentation"><a class="nav-link" href="{% url 'request_page_user' %}">Request user</a></li>
+                                        <li class="nav-item" role="presentation"><a class="nav-link" href="{% url 'report_page' %}">Report</a></li>
+                    <li class="nav-item dropdown"><a class="dropdown-toggle nav-link" data-toggle="dropdown" aria-expanded="false" href="#">Action</a>
+                        <div class="dropdown-menu" role="menu">
+                            <a class="dropdown-item" role="presentation" href="{% url 'stock_req' %}">Stock</a>
+                            <a class="dropdown-item" role="presentation" href="{% url 'import_req' %}">Import Request</a>
+                            <a class="dropdown-item" role="presentation" href="{% url 'export_req'%}">First Approval</a>
+                        </div>
+                    </li>
+                    {% endif %}
+
+                    <!-- manger -->
+                    {%  if role_control == "manger" %} 
+                    <li class="nav-item custom" role="presentation"><a class="nav-link" href="{% url 'request_page_user' %}">Request user</a></li>
+                                        <li class="nav-item" role="presentation"><a class="nav-link" href="{% url 'report_page' %}">Report</a></li>
+                    <li class="nav-item dropdown"><a class="dropdown-toggle nav-link" data-toggle="dropdown" aria-expanded="false" href="#">Action</a>
+                        <div class="dropdown-menu" role="menu">
+                            <a class="dropdown-item" role="presentation" href="{% url 'export_req_2'%}">Second Approval</a>
+                        </div>
+                    </li>
+                    {% endif %}
+
+
+
+
+
+
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <script src="/assets/js/jquery.min.js"></script>
+    <script src="/assets/bootstrap/js/bootstrap.min.js"></script>
+</body>
+
+</html>

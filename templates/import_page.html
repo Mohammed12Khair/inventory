@@ -1,0 +1,71 @@
+{%  include 'nav.html'  %}
+{{ info_page }}
+<div class="container">
+		<h1>Import Page</h1>
+		{% if ADD == 1 %}
+		<div class="alert alert-success" role="alert">
+			Import Request Submit Done 
+		</div>
+
+		{% endif %}
+		<form action="." method="POST">{% csrf_token  %}
+		     	<label for="dateR">Date<input  required="true" class="form-control" id="dateR" type="date" name="date"></label>
+		     	<br>
+		     	
+<label for="import_">Import soruce
+<select  class="form-control selcls" name="import_user" id="cars" required="true">
+	<option value="">Select</option>
+	{% for i in import_name %}
+	  <option value="{{ i.user_name }}">{{ i.user_name }} | {{ i.company }}</option>
+  	 {%  endfor %}
+</select>
+</label>
+<!--
+<h3>item information</h3>
+<label for="import_">Import Type
+<select  class="form-control selcls" name="import_type" id="cars">
+	<option value="">Select</option>
+	{% for i in import_type %}
+	  <option value="{{ i.import_type }}">{{ i.import_type }}</option>
+  	 {%  endfor %}
+</select>
+</label>
+
+<input value="null" type="text" name="import_type" hidden="true">
+
+<label for="bill">Bill number<input class="form-control" id="bill" type="text" name="bill"></label>
+
+<input hidden="true" class="form-control" id="more" type="text" name="more" value="for_more data">
+-->
+
+<label for="batch">Document number<input class="form-control" id="batch" type="text" name="Document" value="{{ Document }}"  required="true"></label>
+
+<br>
+<label for="item">Item Name
+<select class="form-control selcls" name="import_item" id="cars"  required="true">
+	<option value="">Select</option>
+	{% for i in items %}
+	  <option value="{{ i.item }}">{{ i.item }}</option>
+  	 {%  endfor %}
+</select>
+</label>
+<label for="Stock">Stock<input class="form-control" id="Stock" type="number" name="Stock"  required="true"></label>
+
+
+<br>
+<label for="user_sys">Comment<textarea placeholder="option" id="comment" name="comment" class="form-control" value="{{ comment }}"></textarea></label>
+<br>
+<h3>Hnadler Information</h3>
+<label for="user_sys">Username<input class="form-control" id="user_sys" type="text" name="user_sys" value="{{ request.user }}" readonly="true" disabled="disabled"></label>
+
+
+<label for="user_sys">Department<input class="form-control" id="user_sys" type="text" name="department" value="{{ department }}" readonly="true" disabled="disabled"></label>
+
+<label for="user_sys">Role<input class="form-control" id="user_sys" type="text" name="role" value="{{ role }}" readonly="true" disabled="disabled"></label>
+<br>
+
+
+<button class="btn btn-primary" name="save" type="submit" >Import request</button>
+
+</form>
+</div>

@@ -1,0 +1,23 @@
+{% include 'nav.html' %}
+
+
+<div class="container" style="margin-top: 2%;">
+	<head>Add New User</head>
+	<form method="post" action=".">{% csrf_token %}
+		<label for="user">Username<input name="username" id="user" class="form-control" type="text" value="{{Username}}"></label>
+		<label for="pass">Password<input name="password" id="pass" class="form-control" type="text" value="{{Password}}"></label>
+		<label for="email">email<input name="email" id="email" class="form-control" type="email" value="{{email}}"></label><br>
+		<label for="dep">Dep.<input name="depr" id="dep" class="form-control" type="text" value="{{Dep}}"></label>
+		<label for="rol">Role<input name="rol" id="rol" class="form-control" type="text" value="{{Role}}"></label>
+		
+		<!--<label for="date_">Date<input name="date" id="date_" class="form-control" type="text" value="{{date}}"></label>--><br>
+		
+		<button value="save" name="btn" type="submit" class="btn btn-primary">Submit</button>
+
+		<button value="find" name="btn" type="submit" class="btn btn-primary">Search</button>
+
+	</form>
+	{{ info }}
+</div>
+
+{% include 'table.html' %}

@@ -1,0 +1,48 @@
+{%  include 'nav.html'  %}
+
+
+<div class="container">
+<h1>Request Page</h1>
+
+<table class="table table-sm"
+style="text-align: center;">
+
+<th>ID</th>
+<th>Request</th>
+<th>Department</th>
+<th>Handler</th>
+<th>Date</th>
+<th>Sys date</th>
+<th>Item</th>
+<th>Order</th>
+<th>*</th>
+</tr>
+
+{% for i in data_view %}
+<tr>
+<td>{{ i.action_id }}</td>
+<td>{{ i.user_request }}</td>
+<td>{{ i.department }}</td>
+<td>{{ i.user_handler }}</td>
+<td>{{ i.date_input }}</td>
+<td>{{ i.date_sys }}</td>
+<td>{{ i.item_name }}</td>
+<td>{{ i.item_count }}</td>
+
+<form action="." method="post">{% csrf_token %}
+<td>
+<input type="text" name="ID" value="{{ i.action_id }}" hidden="">
+<input type="text" name="item_n" value="{{ i.item_name }}" hidden="">
+<input type="text" name="item_c" value="{{ i.item_count }}" hidden="">
+<button onclick="return confirm('Approve Request {{ i.action_id }}?')" class="btn btn-success btn-sm" name="action" value="Export Approved">Approve</button>
+<button onclick="return confirm('Reject Request {{ i.action_id }}?')" class="btn btn-danger btn-sm" name="action" value="Export Rejected 2nd">Reject</button>
+</td>
+</form>
+</tr>
+{%  endfor %}
+
+</table>
+
+</div>
+
+

@@ -1,0 +1,33 @@
+{%  include 'nav.html'  %}
+{% load staticfiles %} 
+
+<div class="container">
+<h1>Report Page</h1>
+
+<table class="table table-sm"
+style="text-align: center;">
+<tr>
+
+<th>ID</th>
+<th>User Request</th>
+<th>Date</th>
+<th>file</th>
+</tr>
+
+
+{% for i in data_view %}
+<tr>
+<td>{{ i.action_id }}</td>
+<td>{{ i.report_user }}</td>
+<td>{{ i.report_date }}</td>
+<td><a href="/assets/report_export/{{ i.report_name }}" download>{{ i.report_name }}</a></td>
+<!--<td><a href="{{ i.report_name }} %}">{{ i.report_name }}</a></td>-->
+</tr>
+
+{% endfor %}
+
+</table>
+
+</div>
+
+

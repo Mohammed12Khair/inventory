@@ -1,0 +1,90 @@
+{%  include 'nav.html'  %}
+{{ info_page }}
+<div class="container">
+		<h1>Export Page</h1>
+		
+		{% if ADD == 1 %}
+		<div class="alert alert-success" role="alert">
+			Export Request Submit Done 
+		</div>
+
+		{% endif %}
+
+		     <form action="." method="POST">{% csrf_token  %}
+
+
+<label for="dateR">Date<input class="form-control" id="dateR" type="date" name="date"></label>
+		     	<br>
+
+
+
+
+<label for="item">Item Name
+<select class="form-control selcls" name="import_item" id="cars">
+	<option value="">Select</option>
+	{% for i in items %}
+	  <option value="{{ i.item }}">{{ i.item }}</option>
+  	 {%  endfor %}
+</select>
+</label>
+
+<label for="Stock">Stock Request<input class="form-control" id="Stock" type="number" name="Stock"></label>
+
+<br>
+
+<label for="comment">Comment<textarea class="form-control" id="comment" type="text" name="comment" value="{{ comment }}" placeholder="option"></textarea></label>
+
+
+
+<br>
+<h3>Handler Information</h3>
+<label for="user_sys">Username<input class="form-control" id="user_sys" type="text" name="user_sys" value="{{ request.user }}" readonly="true" disabled="disabled"></label>
+
+
+<label for="user_sys">Department<input class="form-control" id="user_sys" type="text" name="department" value="{{ department }}" readonly="true" disabled="disabled"></label>
+
+<label for="user_sys">Role<input class="form-control" id="user_sys" type="text" name="role" value="{{ role }}" readonly="true" disabled="disabled"></label>
+<br>
+
+
+
+<br>
+
+<button class="btn btn-primary" name="save" type="submit" >Export request</button>
+
+</form>
+</div>
+
+<!--
+<label for="import_">Import soruce
+<select  class="form-control selcls" name="import_user" id="cars">
+	<option value="">Select</option>
+	{% for i in import_name %}
+	  <option value="{{ i.user_name }}">{{ i.user_name }}</option>
+  	 {%  endfor %}
+</select>
+</label>
+
+<br>
+<h3>item information</h3>
+<label for="import_">Import Type
+<select  class="form-control selcls" name="import_type" id="cars">
+	<option value="">Select</option>
+	{% for i in import_type %}
+	  <option value="{{ i.user_name }}">{{ i.import_type }}</option>
+  	 {%  endfor %}
+</select>
+</label>
+
+
+<label for="batch">Batch number<input class="form-control" id="batch" type="text" name="batch"></label>
+
+<label for="bill">Bill number<input class="form-control" id="bill" type="text" name="bill"></label>
+
+
+<label for="more">more<input class="form-control" id="more" type="text" name="more" value="for_more data"></label>
+
+
+-->
+
+

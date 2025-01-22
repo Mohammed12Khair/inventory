@@ -1,0 +1,76 @@
+{%  include 'nav.html'  %}
+
+
+<div class="container">
+<h1>Request Page</h1>
+
+<strong>Search</strong>
+
+<form action="." method="post">{% csrf_token %}
+
+<!--
+<label for="item">Item Name
+<select class="form-control selcls" name="import_item" id="cars">
+	<option value="">Select</option>
+	{% for i in items %}
+	  <option value="{{ i.item }}">{{ i.item }}</option>
+  	 {%  endfor %}
+</select>
+</label>
+
+<label for="action">Item Name
+<select class="form-control selcls" name="items_action" id="cars">
+	<option value="">Select</option>
+	{% for i in items_action %}
+	  <option value="{{ i.action_status }}">{{ i.action_status }}</option>
+  	 {%  endfor %}
+</select>
+</label>
+
+
+<br>
+-->
+
+<label for="sd">Start Date<input required="true" value="{{ sd }}" class="form-control" type="date" name="start" id="sd"></label>
+<label for="ed">End Date<input required="true" value="{{ ed }}" class="form-control" type="date" name="end" id="ed"></label>
+<br>
+<button name="action" value="filter" type="submit" class="btn btn-info">Filter</button>
+<button name="action" value="Export" type="submit" class="btn btn-info">Export</button>
+</form>
+
+
+<table class="table table-sm"
+style="text-align: center;">
+	<tr>
+<th>ID</th>
+<th>Handler</th>
+<th>Department</th>
+<th>Request Date</th>
+<th>item</th>
+<th>Stock Req</th>
+<th>Last Action</th>
+<th >User</th>
+<th >Action</th>
+</tr>
+
+{% for i in data_view %}
+<tr>
+
+<td>{{ i.action_id }}</td>
+<td>{{ i.user_handler }}</td>
+<td>{{ i.department }}</td>
+<td>{{ i.date_input }}</td>
+<td>{{ i.item_name }}</td>
+<td>{{ i.item_count }}</td>
+<td class="admin">{{ i.date_sys }}</td>
+<td class="admin" >{{ i.admin_name }}</td>
+<td class="admin" >{{ i.action_status }}</td>
+
+</tr>
+{%  endfor %}
+
+</table>
+
+</div>
+
+

@@ -1,0 +1,40 @@
+{%  include 'nav.html'  %}
+
+
+<div class="container">
+<h1>Request Page</h1>
+
+<table class="table table-sm"
+style="text-align: center;">
+	<tr>
+<th>ID</th>
+<th>Request</th>
+<th>Handler</th>
+<th>Date</th>
+<th>Sys date</th>
+<th>import type</th>
+<th>Item</th>
+<th>Stock</th>
+<th>Action</th>
+
+
+	</tr>
+{% for i in data_view %}
+<tr>
+<td>{{ i.action_id }}</td>
+<td>{{ i.user_request }}</td>
+<td>{{ i.user_handler }}</td>
+<td>{{ i.date_input }}</td>
+<td>{{ i.date_sys }}</td>
+<td>{{ i.user_action }}</td>
+<td>{{ i.item_name }}</td>
+<td>{{ i.item_count }}</td>
+<td>{{ i.action_status }}</td>
+</tr>
+{%  endfor %}
+
+</table>
+
+</div>
+
+
